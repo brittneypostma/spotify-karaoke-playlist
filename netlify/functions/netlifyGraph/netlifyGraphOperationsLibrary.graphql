@@ -1,0 +1,45 @@
+query SpotifyAboutMeQuery @netlify(id: """03c5d884-55bd-4c70-a7be-a9beca69089f""", doc: """
+Find the currently logged-in Spotify user's email, name, profile image, etc.
+""") {
+  me {
+    spotify {
+      country
+      displayName
+      email
+      href
+      id
+      images {
+        height
+        url
+        width
+      }
+      product
+      type
+      uri
+    }
+  }
+}
+
+query SpotifySearchTracks($query: String!) @netlify(id: """95f0a113-a7f0-4939-80a3-bfde9726c0bc""", doc: """
+Search for matching Spotify tracks. Note you can edit this query to also search for artists
+""") {
+  spotify {
+    search(data: {query: $query}) {
+      tracks {
+        name
+        id
+        href
+        album {
+          name
+          id
+          href
+          images {
+            height
+            url
+            width
+          }
+        }
+      }
+    }
+  }
+}
